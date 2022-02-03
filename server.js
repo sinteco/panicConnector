@@ -1,6 +1,9 @@
 const express = require('express');
 const res = require('express/lib/response');
 const mongoose = require('mongoose');
+const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
 const app = express();
 
@@ -11,6 +14,11 @@ const db = require('./config/keys').mongoURL;
 mongoose.connect(db).then(()=>console.log('MongoDB Connected !')).catch(err=>console.log(err));
 
 app.get('/', (req, res)=> res.send('Hello!'));
+
+// app routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
 const port = process.env.PORT || 5000;
 
