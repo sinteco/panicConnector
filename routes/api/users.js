@@ -50,6 +50,7 @@ router.post('/register', (req, res) => {
     })
 });
 
+// @route GET api/users/login
 router.post('/login', (req, res) => {
     const {errors, isValid} = validatorLoginInput(req.body);
     //check validation
@@ -87,6 +88,7 @@ router.post('/login', (req, res) => {
     )
 });
 
+// @route GET api/users/current
 router.get('/current', passport.authenticate('jwt',{session:false}),(req, res)=>{
     res.json({
         id:req.user.id,
