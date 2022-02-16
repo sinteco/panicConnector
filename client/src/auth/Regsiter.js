@@ -28,7 +28,7 @@ import classnames from 'classnames';
       password: this.state.password,
       confpassword: this.state.confpassword
     }
-    axios.post('/api/users/register/', newUser).then(res=>console.log(res.data)).catch(err => console.log(this.setState({errors:err.response.data})));
+    axios.post('/api/users/register/', newUser).then(res=>console.log(res.data)).catch(err => this.setState({errors:err.response.data.errors}));
   }
 
   render() {
@@ -43,7 +43,7 @@ import classnames from 'classnames';
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <input type="text" className={classnames('form-control form-control-lg',{'is-invalid':errors.name})} placeholder="Name" name="name" value={this.state.name} onChange={this.onChange} />
-              {errors.name && (<div className='invalid-feedback'>{errors.name}</div>)}
+              {this.state.errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
             </div>
             <div className="form-group">
               <input type="email" className={classnames('form-control form-control-lg',{'is-invalid':errors.email})} placeholder="Email Address" name="email" value={this.state.email} onChange={this.onChange} />
