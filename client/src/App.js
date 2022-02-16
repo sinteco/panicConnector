@@ -2,7 +2,7 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Regsiter from './components/auth/Regsiter';
 import Login from './components/auth/Login';
 import { Provider } from 'react-redux';
@@ -14,11 +14,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar/>
-        <Routes>
-          <Route exact path="/" element={<Landing/>} />
-          <Route exact path='/register' element={<Regsiter/>}/>
-          <Route exact path='/login' element={<Login/>}/>
-        </Routes>
+          <Route exact path="/" component={Landing} />
+            <div className="container">
+              <Route exact path="/register" component={Regsiter} />
+              <Route exact path="/login" component={Login} />
+            </div>
         <Footer/>
       </div>
     </BrowserRouter>
