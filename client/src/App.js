@@ -5,9 +5,12 @@ import Landing from './components/layout/Landing';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Regsiter from './auth/Regsiter';
 import Login from './auth/Login';
+import { Provider } from 'react-redux';
+import  store from './store';
 
 function App() {
   return (
+    <Provider store={store}>
     <BrowserRouter>
       <div className="App">
         <Navbar/>
@@ -19,6 +22,7 @@ function App() {
         <Footer/>
       </div>
     </BrowserRouter>
+    </Provider>
   );
 }
 
